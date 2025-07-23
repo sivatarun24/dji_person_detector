@@ -68,10 +68,10 @@ def handle_connection(conn, addr):
                         cv2.putText(frame, label, (x1, y1 - 10),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 1)
 
-                    # Print to console
-                    print(f"Person {i+1}:")
-                    print(f"  Confidence: {conf * 100:.2f}%")
-                    print(f"  GPS: ({lat:.6f}, {lon:.6f})")
+                        # Print to console
+                        print(f"Person {i+1}:")
+                        print(f"  Confidence: {conf * 100:.2f}%")
+                        print(f"  GPS: ({lat:.6f}, {lon:.6f})")
 
                     # Save full frame
                     frame_id = msg.get("frame_id", 0)
