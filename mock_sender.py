@@ -4,7 +4,7 @@ import time
 import os
 
 # List of image filenames to send for each telemetry frame
-image_files = ["person1.jpg", "person2.jpg", "person3.jpg", "person4.jpg"]
+image_files = ["person1.jpg", "person2.jpg", "person3.jpg", "person4.jpg", "person5.jpg"]
 image_folder = "input"  # Folder containing the images
 
 telemetries = [
@@ -27,6 +27,16 @@ telemetries = [
         "roll": 0.0,
         "fov": 82.6,
         "resolution": [384, 640]
+    },
+    {
+        "latitude": 34.0973,
+        "longitude": -117.2343,
+        "altitude": 30.9,
+        "yaw": 77.0,
+        "pitch": -21.0,
+        "roll": 0.0,
+        "fov": 82.6,
+        "resolution": [448, 640]
     },
     {
         "latitude": 34.0973,

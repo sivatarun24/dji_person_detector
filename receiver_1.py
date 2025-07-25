@@ -5,6 +5,7 @@ import numpy as np
 import os
 from detector import detect_persons
 from coordinate_mapper import map_to_coordinates
+from push_location import push_person_location
 
 os.makedirs("output", exist_ok=True)
 
@@ -56,6 +57,9 @@ def handle_connection(conn, addr):
                         print("Coordinate mapping error:", e)
                         coords = [None] * len(boxes)
 
+                    # Save full frame
+                    frame_id = msg.get("frame_id", 0)  # ✅ Moved up
+
                     # Draw detections
                     for i, (x1, y1, x2, y2, conf) in enumerate(boxes):
                         point = coords[i]
@@ -72,6 +76,11 @@ def handle_connection(conn, addr):
                         print(f"Person {i+1}:")
                         print(f"  Confidence: {conf * 100:.2f}%")
                         print(f"  GPS: ({lat:.6f}, {lon:.6f})")
+
+                        # Push to ArcGIS with frame path
+                        image_path = f"output/frame_{frame_id}.jpg"
+                        push_person_location(lat, lon, image_path=image_path, name=f"Person {i+1}", status="Detected")
+
 
                     # Save full frame
                     frame_id = msg.get("frame_id", 0)
